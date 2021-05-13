@@ -26,8 +26,8 @@ public class TelegramCowinBot extends TelegramLongPollingBot {
     private final String TELEGRAM_STRING = "TELEGRAM";
 
     //Bot information
-    private final String CRYPTO_BOT_TOKEN = "1729919631:AAExAz2WRfbmWMFsNzRfBZBsHxXD9KDlCMc"; // Test
-    // private final String CRYPTO_BOT_TOKEN = "1721251982:AAGhhBO5RRQb7sCG4hE9yXz2cuB90uPqxe0";
+    // private final String CRYPTO_BOT_TOKEN = "1729919631:AAExAz2WRfbmWMFsNzRfBZBsHxXD9KDlCMc"; // Test
+    private final String CRYPTO_BOT_TOKEN = "1893229099:AAHzF6__N3Jn_hwDUibAxIdpHUK4QA5iIYI";
     private final String CRYPTO_BOT_NAME = "CryptoBot";
 
     //Commands
