@@ -66,7 +66,7 @@ public class CovinScrapper {
             logger.info(String.format("Request failed with error %s, time - %s \n", response.body().toString(), LocalDateTime.now()));
         }
 
-        return String.format("%s:%s", response.statusCode(), response.body().toString());
+        return String.format("%s::%s", response.statusCode(), response.body().toString());
         
     }
 
@@ -82,8 +82,11 @@ public class CovinScrapper {
 
         try {
             String res = getSlots(pincode, date);
-            String[] splittedRes = res.split(":");
+            String[] splittedRes = res.split("::");
             String statusCode = splittedRes[0];
+            System.out.println(res);
+            // System.out.println(splittedRes[0]);
+            // System.out.println(splittedRes[1]);
             String response = splittedRes[1];
 
             saveCovinResponse(response);
