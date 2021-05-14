@@ -90,16 +90,13 @@ public class CovinScrapper {
 
             saveCovinResponse(response);
 
-            if (statusCode != "200") {
-                return;
-            }
-            
             Gson g = new Gson();
             CovinDataDTO cdd = g.fromJson(response, CovinDataDTO.class);
             
             for (CovinDataDTO.Center center : cdd.getCenters()) {
                 for (CovinDataDTO.Center.Session session : center.getSessions()) {
                     String address = String.format("%s, %s, %s, %s, %s, %s", center.getCenterName(), center.getCenterAddress(), center.getBlockName(), center.getDistrictName(), center.getPincode(), center.getStateName());
+                    
                     if (session.getAvailableCapacity() > 0) {
                         if (session.getMinAgeLimit() == 18) {
                             List<Subscription> subscribers = subscribeService.findByPincodeAge(pincode, 18, 45);
