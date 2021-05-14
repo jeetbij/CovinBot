@@ -84,9 +84,6 @@ public class CovinScrapper {
             String res = getSlots(pincode, date);
             String[] splittedRes = res.split("::");
             String statusCode = splittedRes[0];
-            System.out.println(res);
-            // System.out.println(splittedRes[0]);
-            // System.out.println(splittedRes[1]);
             String response = splittedRes[1];
 
             saveCovinResponse(response);
