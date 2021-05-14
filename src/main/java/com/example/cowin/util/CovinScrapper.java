@@ -58,6 +58,8 @@ public class CovinScrapper {
                 .timeout(Duration.ofSeconds(5))
                 .build();
 
+        logger.info(String.format("Getting slots for pincode %s and date %s \n", pincode, date));
+
         HttpResponse<String> response = client
             .send(request, HttpResponse.BodyHandlers.ofString());
 
