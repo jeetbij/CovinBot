@@ -25,6 +25,8 @@ import com.example.cowin.service.ISubscribeService;
 import com.example.cowin.service.SubscribeService;
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class CovinScrapper {
@@ -33,6 +35,8 @@ public class CovinScrapper {
 
     private ICovinDataService covinDataService = BeanUtilService.getBean(CovinDataService.class);
     private ISubscribeService subscribeService = BeanUtilService.getBean(SubscribeService.class);
+
+    Logger logger = LoggerFactory.getLogger(CovinScrapper.class);
 
     private String getSlots(String pincode, String date) throws IOException, InterruptedException {
     
@@ -113,6 +117,8 @@ public class CovinScrapper {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(message);
+
+        logger.info(String.format("Notifying user with chatId %s, message - %s \n", chatId, message));
         
         TelegramCowinBot tcb = new TelegramCowinBot();
         tcb.sendMessage(sendMessage);
@@ -143,7 +149,11 @@ public class CovinScrapper {
         @Override
         public void run() {
             
-            checkAndNotify();
+            try {
+                checkAndNotify();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             
         }
         

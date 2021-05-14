@@ -23,7 +23,7 @@ public class Subscription {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name="crypto_currency_id")
+    @JoinColumn(name="user_id")
     private User user;
 
     @NotNull

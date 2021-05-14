@@ -43,7 +43,7 @@ public class TelegramCowinBot extends TelegramLongPollingBot {
     private final String UNRECOGNIZED_COMMAND = "Unrecognized command.";
     private final String SUBSCRIBED_MESSAGE = "Your request has been registered successfully. You will be notified when vaccine slots are available in area with pincode %s for %s year olds.";
     private final String ALREADY_SUBSCRIBED_MESSAGE = "You have already a request registered in area with pincode %s for %s year olds.";
-    private final String UNSUBSCRIBED_MESSAGE = "I hope you got a slot for vaccination. You will not be notified anymore for vaccine slot availability in area with pincode %s for %s year olds.";
+    private final String UNSUBSCRIBED_MESSAGE = "You will not be notified anymore for vaccine slot availability in area with pincode %s for %s year olds.";
     private final String NO_SUBSCRIPTION_MESSAGE = "You don't have any registered notification requests.";
     private final String INVALID_MESSAGE = "Invalid input.";
 
