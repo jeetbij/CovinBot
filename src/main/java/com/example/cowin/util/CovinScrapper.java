@@ -61,7 +61,12 @@ public class CovinScrapper {
         HttpResponse<String> response = client
             .send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response.body().toString();
+        if (response.statusCode() != 200) {
+
+            logger.info(String.format("Request failed with error %s, time - %s \n", response.body().toString(), LocalDateTime.now()));
+        }
+
+        return String.format("%s:%s", response.statusCode(), response.body().toString());
         
     }
 
@@ -76,8 +81,16 @@ public class CovinScrapper {
     private void checkSlotAvailability(String pincode, String date) {
 
         try {
-            String response = getSlots(pincode, date);
+            String res = getSlots(pincode, date);
+            String[] splittedRes = res.split(":");
+            String statusCode = splittedRes[0];
+            String response = splittedRes[1];
+
             saveCovinResponse(response);
+
+            if (statusCode != "200") {
+                return;
+            }
             
             Gson g = new Gson();
             CovinDataDTO cdd = g.fromJson(response, CovinDataDTO.class);

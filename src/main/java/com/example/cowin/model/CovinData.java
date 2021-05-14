@@ -1,5 +1,7 @@
 package com.example.cowin.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,6 +22,8 @@ public class CovinData {
   @Column(length=65555)
   private String response;
 
+  private LocalDateTime createdAt = LocalDateTime.now();
+
   public Integer getId() {
     return id;
   }
@@ -35,5 +39,9 @@ public class CovinData {
   public void setResponse(String response) {
     this.response = response;
   }
+
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+}
 
 }
