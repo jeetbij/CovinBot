@@ -120,7 +120,7 @@ public class CovinScrapper {
                 for (CovinDataDTO.Center.Session session : center.getSessions()) {
                     String address = String.format("%s, %s, %s, %s, %s, %s", center.getCenterName(), center.getCenterAddress(), center.getBlockName(), center.getDistrictName(), center.getPincode(), center.getStateName());
                     
-                    if (session.getAvailableCapacity() == 0) {
+                    if (session.getAvailableCapacity() > 0) {
                         if (session.getMinAgeLimit() == 18) {
                             List<Subscription> subscribers = subscribeService.findByPincodeAge(pincode, 18, 45);
                             for (Subscription subscriber : subscribers) {
