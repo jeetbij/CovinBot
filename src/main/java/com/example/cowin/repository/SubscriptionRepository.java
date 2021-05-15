@@ -23,4 +23,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Query("SELECT DISTINCT s.pincode from Subscription s where s.isActive = 1")
     List<String> findDistinctPincode();
 
+    @Query("from Subscription s where s.user = ?1 AND s.pincode = ?2 AND s.notifiedOn = ?3 AND s.isActive = 1")
+    Optional<Subscription> findNotifiedSubscription(User user, String pincode, String date);
+
 }

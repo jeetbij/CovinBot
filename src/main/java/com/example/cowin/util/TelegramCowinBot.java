@@ -45,6 +45,8 @@ public class TelegramCowinBot extends TelegramLongPollingBot {
     private final String ALREADY_SUBSCRIBED_MESSAGE = "You have already a request registered in area with pincode %s for %s year olds.";
     private final String UNSUBSCRIBED_MESSAGE = "You will not be notified anymore for vaccine slot availability in area with pincode %s for %s year olds.";
     private final String NO_SUBSCRIPTION_MESSAGE = "You don't have any registered notification requests.";
+    private final String NO_SUBSCRIPTION_FOUND = "No request found for pincode %s and age %s.";
+    private final String INVALID_PINCODE = "Invalid pincode - %s";
     private final String INVALID_MESSAGE = "Invalid input.";
 
     //Repositories
@@ -84,6 +86,10 @@ public class TelegramCowinBot extends TelegramLongPollingBot {
 
             case SUBSCRIBE_COMMAND:
                 if (splittedMessage.length > 1) {
+                    if (splittedMessage[1].length() != 6) {
+                        createReplyMessage(reply, String.format(INVALID_PINCODE, splittedMessage[1]));
+                        break;
+                    }
                     String pincode = getPincode(splittedMessage[1], userId);
                     Integer age = getAge(splittedMessage[2]);
                     if (pincode == null || age == null) {
@@ -103,6 +109,10 @@ public class TelegramCowinBot extends TelegramLongPollingBot {
 
             case UNSUBSCRIBE_COMMAND:
                 if (splittedMessage.length > 1) {
+                    if (splittedMessage[1].length() != 6) {
+                        createReplyMessage(reply, String.format(INVALID_PINCODE, splittedMessage[1]));
+                        break;
+                    }
                     String pincode = getPincode(splittedMessage[1], userId);
                     Integer age = getAge(splittedMessage[2]);
                     if (pincode == null || age == null) {
@@ -113,7 +123,7 @@ public class TelegramCowinBot extends TelegramLongPollingBot {
                     if (unsubscribed) {
                         createReplyMessage(reply, String.format(UNSUBSCRIBED_MESSAGE, pincode, age));
                     } else {
-                        createReplyMessage(reply, String.format(NO_SUBSCRIPTION_MESSAGE));
+                        createReplyMessage(reply, String.format(NO_SUBSCRIPTION_FOUND, pincode, age));
                     }
                 } else {
                     createReplyMessage(reply, INVALID_MESSAGE);

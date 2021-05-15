@@ -17,6 +17,8 @@ public interface ISubscribeService {
     List<Subscription> findAll();
 
     List<String> findDistinctPincode();
+    
+    Optional<Subscription> findNotifiedSubscription(User user, String pincode, String date);
 
     void save(Subscription s);
 

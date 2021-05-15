@@ -45,5 +45,10 @@ public class SubscribeService implements ISubscribeService {
     public void save(Subscription s) {
         repository.save(s);
     }
+
+    @Override
+    public Optional<Subscription> findNotifiedSubscription(User user, String pincode, String date) {
+        return repository.findNotifiedSubscription(user, pincode, date);
+    }
     
 }

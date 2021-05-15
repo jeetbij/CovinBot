@@ -38,6 +38,8 @@ public class Subscription {
 
     private String shot;
 
+    private String notifiedOn;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -98,6 +100,14 @@ public class Subscription {
     public void setShot(String shot) {
         this.shot = shot;
     }
+
+    public String getNotifiedOn() {
+		return this.notifiedOn;
+	}
+
+	public void setNotifiedOn(String notifiedOn) {
+		this.notifiedOn = notifiedOn;
+	}
 
     public LocalDateTime getCreatedAt() {
         return this.createdAt;

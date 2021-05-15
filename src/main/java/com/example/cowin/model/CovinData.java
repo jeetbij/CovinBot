@@ -18,6 +18,10 @@ public class CovinData {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  private String pincode;
+
+  private String date;
+
   @NotNull
   @Column(length=65555)
   private String response;
@@ -30,6 +34,22 @@ public class CovinData {
 
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  public String getPincode() {
+    return this.pincode;
+  }
+
+  public void setPincode(String pincode) {
+    this.pincode = pincode;
+  }
+
+  public String getDate() {
+    return this.date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
   }
 
   public String getResponse() {
