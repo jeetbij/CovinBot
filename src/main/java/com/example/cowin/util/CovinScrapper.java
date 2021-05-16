@@ -239,10 +239,23 @@ public class CovinScrapper {
 
     }
 
+    private class clearNotifiedOn extends TimerTask {
+
+        @Override
+        public void run() {
+            List<Subscription> subs = subscribeService.findAll();
+            for (Subscription subscription : subs) {
+                subscription.setNotifiedOn(null);
+                subscribeService.save(subscription);
+            }
+        }
+
+    }
+
     public void scrapper() {
 
-        // Timer timer = new Timer();
-        // timer.schedule(new ScrapTimer(), 0, 60*1000); 
+        Timer timer = new Timer();
+        timer.schedule(new clearNotifiedOn(), 0, 60*60*1000);
 
         while (true) {
             List<String> pincodes = subscribeService.findDistinctPincode();
