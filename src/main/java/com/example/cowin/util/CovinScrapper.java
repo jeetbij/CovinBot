@@ -143,6 +143,8 @@ public class CovinScrapper {
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
